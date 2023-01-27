@@ -2,6 +2,8 @@ package main;
 
 import java.awt.Graphics;
 
+import entities.Player;
+
 // import entities.Player;
 // import levels.BoxManager;
 // import levels.BushManager;
@@ -15,6 +17,11 @@ public class Game implements Runnable {
 	private final int UPS_SET = 200;
 	private boolean isGaming = true;
 
+	private Player player;
+	// private LevelManager levelManager;
+  // private BoxManager boxManager;
+  // private BushManager bushManager;
+
 	public final static int TILES_DEFAULT_SIZE = 17;
 	public final static float SCALE = 3f;
 	public final static int TILES_WIDTH = 15;
@@ -23,11 +30,6 @@ public class Game implements Runnable {
 	public final static int GAME_WIDTH = TILES_SIZE * TILES_WIDTH;
 	public final static int GAME_HEIGTH = TILES_SIZE * TILES_HEIGTH;
 	public final static boolean DEBUG = false;
-
-	// private Player player;
-	// private LevelManager levelManager;
-  // private BoxManager boxManager;
-  // private BushManager bushManager;
 
 	public Game() {
 		initClasses();
@@ -42,8 +44,8 @@ public class Game implements Runnable {
 	private void initClasses() {
 		// levelManager = new LevelManager();
 		// int[][] matrix = levelManager.getLvlData();
-		// int xInit = 0;
-		// int yInit = 0;
+		int xInit = 0;
+		int yInit = 0;
 
 		// for (int i = 0; i < matrix.length; i++) {
 		// 	for (int j = 0; j < matrix[0].length; j++) {
@@ -56,7 +58,7 @@ public class Game implements Runnable {
 
     // bushManager= new BushManager(matrix);
     // boxManager = new BoxManager(matrix);
-		// player = new Player(xInit, yInit, TILES_SIZE + 30, TILES_SIZE + 30);
+		player = new Player(xInit, yInit, TILES_SIZE + 30, TILES_SIZE + 30);
 		// player.setLvlData(matrix);
 		// player.setBoxManager(boxManager);
 		// player.setBushManager(bushManager);
@@ -68,7 +70,7 @@ public class Game implements Runnable {
 	}
 
 	public void update() {
-		// player.update();
+		player.update();
 		// boxManager.update();
 	}
 
@@ -76,7 +78,7 @@ public class Game implements Runnable {
 		// levelManager.render(g);
 		// bushManager.render(g);
     // boxManager.render(g);
-		// player.render(g);
+		player.render(g);
 	}
 
 	@Override
@@ -108,7 +110,7 @@ public class Game implements Runnable {
 			}
 
 			if (deltaF >= 1) {
-				// gamePanel.repaint();
+				gamePanel.repaint();
 				frames++;
 				deltaF--;
 			}
@@ -124,11 +126,11 @@ public class Game implements Runnable {
 
 	}
 
-	public void windowsFocusLost() {
+	// public void windowsFocusLost() {
 		// player.resetDirection();
-	}
-
-	// public Player getPlayer() {
-	// 	return player;
 	// }
+
+	public Player getPlayer() {
+		return player;
+	}
 }
