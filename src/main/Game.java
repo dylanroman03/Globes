@@ -3,6 +3,7 @@ package main;
 import java.awt.Graphics;
 
 import entities.Player;
+import managers.GlobeManager;
 
 // import entities.Player;
 // import levels.BoxManager;
@@ -19,7 +20,7 @@ public class Game implements Runnable {
 
 	private Player player;
 	// private LevelManager levelManager;
-  // private BoxManager boxManager;
+  private GlobeManager globeManager;
   // private BushManager bushManager;
 
 	public final static int TILES_DEFAULT_SIZE = 16;
@@ -29,7 +30,7 @@ public class Game implements Runnable {
 	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
 	public final static int GAME_WIDTH = TILES_SIZE * TILES_WIDTH;
 	public final static int GAME_HEIGHT = TILES_SIZE * TILES_HEIGTH;
-	public final static boolean DEBUG = false;
+	public final static boolean DEBUG = true;
 
 	public Game() {
 		initClasses();
@@ -45,6 +46,7 @@ public class Game implements Runnable {
 		int xInit = 0;
 		int yInit = GAME_HEIGHT - TILES_SIZE;
 
+		globeManager = new GlobeManager();
 		player = new Player(xInit, yInit, TILES_SIZE + 30, TILES_SIZE + 30);
 	}
 
@@ -59,6 +61,7 @@ public class Game implements Runnable {
 
 	public void render(Graphics g) {
 		player.render(g);
+		globeManager.render(g);
 	}
 
 	@Override
