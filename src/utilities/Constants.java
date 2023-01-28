@@ -53,6 +53,10 @@ public class Constants {
 		}
 	}
 
+	public static String GetTimePath (int time) {
+		return "res/Time/" + time + ".png";
+	}
+
 	public static String MISSILE_PATH = "res/missile.png";
 	public static String BACKGROUND_PATH = "res/background.png";
 }

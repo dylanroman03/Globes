@@ -1,5 +1,7 @@
 package main;
 
+import static managers.StatusManager.renderGoals;
+import static managers.StatusManager.renderTime;
 import static utilities.Constants.BACKGROUND_PATH;
 
 import java.awt.Graphics;
@@ -29,7 +31,7 @@ public class Game implements Runnable {
 
 	public final static int TILES_DEFAULT_SIZE = 16;
 	public final static float SCALE = 3f;
-	public final static int TILES_WIDTH = 20;
+	public final static int TILES_WIDTH = 21;
 	public final static int TILES_HEIGTH = 8;
 	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
 	public final static int GAME_WIDTH = TILES_SIZE * TILES_WIDTH;
@@ -67,7 +69,7 @@ public class Game implements Runnable {
 				callDialog();
 			}
 		};
-		timer.schedule(task, 10000);
+		timer.schedule(task, 20000);
 	}
 
 	private void startGameLoop() {
@@ -85,8 +87,8 @@ public class Game implements Runnable {
 		globeManager.render(g);
 		player.render(g);
 		missile.render(g, (int) player.getHitBox().x, (int) (player.getHitBox().y - 25));
-		g.drawString("Time: " + time, TILES_SIZE * 18, TILES_SIZE);
-		g.drawString("Points: " + player.getGoals(), TILES_SIZE * 18, TILES_SIZE / 2);
+		renderTime(g, time);
+		renderGoals(g, player.getGoals());
 	}
 
 	@Override
