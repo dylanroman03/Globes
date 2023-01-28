@@ -9,8 +9,9 @@ import main.Game;
 import utilities.LoadSave;
 
 public class Globe extends Entity {
-  int type;
-  BufferedImage image;
+  public int type;
+  private BufferedImage image;
+  public boolean visible = true;
 
   public int getType() {
     return type;
@@ -36,5 +37,4 @@ public class Globe extends Entity {
       showHitBox(g);
     }
   }
-  
 }

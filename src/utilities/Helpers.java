@@ -16,23 +16,23 @@ public class Helpers {
 
     switch (player.getPlayerAction()) {
       case RUNNING_LEFT:
-        if (!isSolid(x, y))
-          if (!isSolid(x, y + height))
+        if (!isLimit(x, y))
+          if (!isLimit(x, y + height))
             return true;
         break;
       case RUNNING_RIGHT:
-        if (!isSolid(x + width, y))
-          if (!isSolid(x + width, y + height))
+        if (!isLimit(x + width, y))
+          if (!isLimit(x + width, y + height))
             return true;
         break;
       case IDLE_UP:
-        if (!isSolid(x, y))
-          if (!isSolid(x + width, y))
+        if (!isLimit(x, y))
+          if (!isLimit(x + width, y))
             return true;
         break;
       case IDLE_DOWN:
-        if (!isSolid(x, y + height))
-          if (!isSolid(x + width, y + height))
+        if (!isLimit(x, y + height))
+          if (!isLimit(x + width, y + height))
             return true;
         break;
     }
@@ -40,7 +40,7 @@ public class Helpers {
     return false;
   }
 
-  public static boolean isSolid(float x, float y) {
+  public static boolean isLimit(float x, float y) {
     if (x < 0 || x >= Game.GAME_WIDTH)
 			return true;
 		if (y < 0 || y >= Game.GAME_HEIGHT)

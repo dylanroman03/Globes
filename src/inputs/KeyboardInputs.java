@@ -15,6 +15,12 @@ public class KeyboardInputs implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+		char w = "w".charAt(0);
+		char wUppercase = "W".charAt(0);
+
+		if (e.getKeyChar() == w || e.getKeyChar() == wUppercase) {
+			gamePanel.getGame().getMissile().setShooting(true);
+		}
 	}
 
 	@Override

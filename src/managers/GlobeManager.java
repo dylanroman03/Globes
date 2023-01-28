@@ -1,8 +1,7 @@
 package managers;
 
-// import static utilities.Constants.GetGlobePath;
-
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 import entities.Globe;
@@ -24,9 +23,25 @@ public class GlobeManager {
   public void render(Graphics g) {
     for (Globe[] globes : globes) {
       for (Globe globe : globes) {
-          globe.render(g);
+          if (globe.visible) {
+            globe.render(g);
+          }
       } 
     }
+  }
+
+  public boolean intersectGlobe(Rectangle2D missile) {
+    for (Globe[] globes2 : globes) {
+      for (Globe globe : globes2) {
+        if (globe.visible) {
+          if(globe.getHitBox().intersects(missile)) {
+            globe.visible = false;
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
   
 }

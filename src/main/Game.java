@@ -17,7 +17,7 @@ public class Game implements Runnable {
 
 	private Player player;
 	private Missile missile;
-  private GlobeManager globeManager;
+	private GlobeManager globeManager;
 
 	public final static int TILES_DEFAULT_SIZE = 16;
 	public final static float SCALE = 3f;
@@ -45,6 +45,7 @@ public class Game implements Runnable {
 		globeManager = new GlobeManager();
 		player = new Player(xInit, yInit, TILES_SIZE + 30, TILES_SIZE + 30);
 		missile = new Missile(player.getHitBox().x, player.getHitBox().y - 25);
+		missile.setGlobeManager(globeManager);
 	}
 
 	private void startGameLoop() {
@@ -54,6 +55,7 @@ public class Game implements Runnable {
 
 	public void update() {
 		player.update();
+		missile.update((int) player.getHitBox().x, (int) (player.getHitBox().y - 25));
 	}
 
 	public void render(Graphics g) {
@@ -114,4 +116,9 @@ public class Game implements Runnable {
 	public Player getPlayer() {
 		return player;
 	}
+
+  public Missile getMissile() {
+		return missile;
+	}
+
 }
