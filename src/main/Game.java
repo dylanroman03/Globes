@@ -12,8 +12,7 @@ import entities.Player;
 import managers.GlobeManager;
 import utilities.LoadSave;
 
-public class Game {
-// public class Game implements Runnable {
+public class Game implements Runnable {
 	private GameWindow gameWindow;
 	private GamePanel gamePanel;
 	private Thread gameThread;
@@ -72,11 +71,8 @@ public class Game {
 	}
 
 	private void startGameLoop() {
-		// gameThread = new Thread(this);
-		// gameThread.start();
-		while (true) {
-			run();
-		}
+		gameThread = new Thread(this);
+		gameThread.start();
 	}
 
 	public void update() {
@@ -93,7 +89,7 @@ public class Game {
 		g.drawString("Points: " + player.getGoals(), TILES_SIZE * 18, TILES_SIZE / 2);
 	}
 
-	// @Override
+	@Override
 	public void run() {
 
 		double timePerFrame = 1000000000.0 / FPS_SET;

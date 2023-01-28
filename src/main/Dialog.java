@@ -9,7 +9,7 @@ public class Dialog extends JOptionPane {
     this.game = game;
     int result = showConfirmDialog(
         panel,
-        "Your Points are:" + game.getPlayer().getGoals(),
+        "Your Points are:" + game.getPlayer().getGoals() + " Do you want to play again?",
         "Do you want to play again?",
         JOptionPane.YES_NO_OPTION,
         JOptionPane.QUESTION_MESSAGE);
