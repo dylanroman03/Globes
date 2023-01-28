@@ -20,6 +20,7 @@ public class GamePanel extends JPanel {
 		setPanelSize();
 		addKeyListener(new KeyboardInputs(this));
 		addMouseMotionListener(mouseInputs);
+		addMouseListener(mouseInputs);
 	}
 
 	private void setPanelSize() {

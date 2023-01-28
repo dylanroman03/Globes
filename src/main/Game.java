@@ -50,7 +50,7 @@ public class Game implements Runnable {
 	}
 
 	private void initClasses() {
-		int xInit = 0;
+		int xInit = GAME_WIDTH / 2;
 		int yInit = GAME_HEIGHT - TILES_SIZE;
 
 		player = new Player(xInit, yInit, TILES_SIZE + 30, TILES_SIZE + 30);

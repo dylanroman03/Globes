@@ -3,13 +3,14 @@ package inputs;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import main.GamePanel;
 
-public class MouseInputs implements  MouseMotionListener {
+public class MouseInputs implements  MouseMotionListener, MouseListener {
 	private GamePanel gamePanel;
 	int x = 0;
 
@@ -49,5 +50,26 @@ public class MouseInputs implements  MouseMotionListener {
 			}
 		};
 		timer.schedule(task, 100);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		gamePanel.getGame().getMissile().setShooting(true);
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
 	}
 }
