@@ -3,12 +3,13 @@ package inputs;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import main.GamePanel;
 
-public class MouseInputs implements MouseListener, MouseMotionListener {
+public class MouseInputs implements  MouseMotionListener {
 	private GamePanel gamePanel;
 	int x = 0;
 
@@ -24,40 +25,29 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// if (e.getX() < x) {
-		// 	System.out.println("1");
-		// 	gamePanel.getGame().getPlayer().setLeft(true);
-		// } else if (e.getX() > x) {
-		// 	System.out.println("2");
-		// 	gamePanel.getGame().getPlayer().setRight(true);
-		// } else {
-		// 	gamePanel.getGame().getPlayer().setRight(false);
-		// 	gamePanel.getGame().getPlayer().setLeft(false);
-		// }
+		if (e.getX() < x) {
+			gamePanel.getGame().getPlayer().setLeft(true);
+		} else if (e.getX() > x) {
+			gamePanel.getGame().getPlayer().setRight(true);
+		} else {
+			gamePanel.getGame().getPlayer().setRight(false);
+			gamePanel.getGame().getPlayer().setLeft(false);
+		}
 
-		// x = e.getX();
+
+		x = e.getX();
+
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+				if (x == e.getX()) {
+					gamePanel.getGame().getPlayer().setRight(false);
+					gamePanel.getGame().getPlayer().setLeft(false);
+				}
+			}
+		};
+		timer.schedule(task, 100);
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		System.out.println("mouseClicked");
-		gamePanel.getGame().getMissile().setShooting(true);
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-	}
-
 }

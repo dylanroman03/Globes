@@ -54,5 +54,5 @@ public class Constants {
 	}
 
 	public static String MISSILE_PATH = "res/missile.png";
-
+	public static String BACKGROUND_PATH = "res/background.png";
 }

@@ -42,9 +42,9 @@ public class Player extends Entity {
 		g.drawImage(animations[playerAction][aniIndex], (int) (hitBox.x - xDrawOffset), (int) (hitBox.y - yDrawOffset),
 				width, height, null);
 
-		if (Game.DEBUG) {
+		// if (Game.DEBUG) {
 			showHitBox(g);
-		}
+		// }
 	}
 
 	private void updateAnimationTick() {
