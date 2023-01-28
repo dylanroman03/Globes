@@ -30,13 +30,13 @@ public class Constants {
 	public static String GetGlobePath (int globe) {
 		switch (globe) {
 			case BLUE_GLOBE:
-				return 	"res/Globes/blue.png";
+				return 	"res/Globes/1.png";
 			case GREEN_GLOBE:
-				return 	"res/Globes/green.png";
+				return 	"res/Globes/2.png";
 			case RED_GLOBE:
-				return 	"res/Globes/red.png";
+				return 	"res/Globes/3.png";
 			default: // 3 
-				return 	"res/Globes/yellow.png";
+				return 	"res/Globes/4.png";
 		}
 	}
 
