@@ -22,13 +22,13 @@ public class Game implements Runnable {
   // private BoxManager boxManager;
   // private BushManager bushManager;
 
-	public final static int TILES_DEFAULT_SIZE = 17;
+	public final static int TILES_DEFAULT_SIZE = 16;
 	public final static float SCALE = 3f;
-	public final static int TILES_WIDTH = 15;
-	public final static int TILES_HEIGTH = 15;
+	public final static int TILES_WIDTH = 20;
+	public final static int TILES_HEIGTH = 8;
 	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
 	public final static int GAME_WIDTH = TILES_SIZE * TILES_WIDTH;
-	public final static int GAME_HEIGTH = TILES_SIZE * TILES_HEIGTH;
+	public final static int GAME_HEIGHT = TILES_SIZE * TILES_HEIGTH;
 	public final static boolean DEBUG = false;
 
 	public Game() {
@@ -42,26 +42,10 @@ public class Game implements Runnable {
 	}
 
 	private void initClasses() {
-		// levelManager = new LevelManager();
-		// int[][] matrix = levelManager.getLvlData();
 		int xInit = 0;
-		int yInit = 0;
+		int yInit = GAME_HEIGHT - TILES_SIZE;
 
-		// for (int i = 0; i < matrix.length; i++) {
-		// 	for (int j = 0; j < matrix[0].length; j++) {
-		// 		if (matrix[i][j] == 5) {
-		// 			xInit = (Game.TILES_SIZE * j);
-		// 			yInit = (Game.TILES_SIZE * i);
-		// 		}
-		// 	}
-		// }
-
-    // bushManager= new BushManager(matrix);
-    // boxManager = new BoxManager(matrix);
 		player = new Player(xInit, yInit, TILES_SIZE + 30, TILES_SIZE + 30);
-		// player.setLvlData(matrix);
-		// player.setBoxManager(boxManager);
-		// player.setBushManager(bushManager);
 	}
 
 	private void startGameLoop() {
@@ -71,13 +55,9 @@ public class Game implements Runnable {
 
 	public void update() {
 		player.update();
-		// boxManager.update();
 	}
 
 	public void render(Graphics g) {
-		// levelManager.render(g);
-		// bushManager.render(g);
-    // boxManager.render(g);
 		player.render(g);
 	}
 
@@ -126,9 +106,9 @@ public class Game implements Runnable {
 
 	}
 
-	// public void windowsFocusLost() {
-		// player.resetDirection();
-	// }
+	public void windowsFocusLost() {
+		player.resetDirection();
+	}
 
 	public Player getPlayer() {
 		return player;
