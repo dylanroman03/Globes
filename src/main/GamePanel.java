@@ -11,6 +11,11 @@ import inputs.MouseInputs;
 
 public class GamePanel extends JPanel {
 	private Game game;
+	private String label = "";
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
 
 	public GamePanel(Game game) {
 		MouseInputs mouseInputs;
@@ -21,7 +26,10 @@ public class GamePanel extends JPanel {
 		addKeyListener(new KeyboardInputs(this));
 		addMouseListener(mouseInputs);
 		addMouseMotionListener(mouseInputs);
-
+		// Dimension size = label.getPreferredSize();
+		// label.setBounds(200, 200, size.width, size.height);
+		// label.setBounds(Game.GAME_WIDTH - Game.TILES_SIZE, Game.GAME_HEIGHT, Game.TILES_SIZE, Game.TILES_SIZE);
+		// add(label);
 	}
 
 	private void setPanelSize() {

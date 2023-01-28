@@ -1,14 +1,18 @@
 package managers;
 
+import static utilities.Constants.GetGlobePoints;
+
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 import entities.Globe;
+import entities.Player;
 import main.Game;
 
 public class GlobeManager {
   private Globe[][] globes = new Globe[3][17];
+  private Player player;
 
   public GlobeManager() {
     for (int i = 0; i < globes.length; i++) {
@@ -36,12 +40,17 @@ public class GlobeManager {
         if (globe.visible) {
           if(globe.getHitBox().intersects(missile)) {
             globe.visible = false;
+            player.setGoals(GetGlobePoints(globe.type));
             return true;
           }
         }
       }
     }
     return false;
+  }
+
+  public void setPlayer(Player player) {
+    this.player = player;
   }
   
 }

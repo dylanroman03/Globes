@@ -1,11 +1,14 @@
 package main;
 
 import java.awt.Graphics;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.swing.JOptionPane;
 
 import entities.Missile;
 import entities.Player;
 import managers.GlobeManager;
-
 
 public class Game implements Runnable {
 	private GameWindow gameWindow;
@@ -14,6 +17,8 @@ public class Game implements Runnable {
 	private final int FPS_SET = 120;
 	private final int UPS_SET = 200;
 	private boolean isGaming = true;
+	private int time = 0;
+	private boolean isPlaying = true;
 
 	private Player player;
 	private Missile missile;
@@ -35,6 +40,22 @@ public class Game implements Runnable {
 		gameWindow = new GameWindow(gamePanel);
 		gamePanel.requestFocus();
 
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+				isPlaying = false;
+				JOptionPane.showConfirmDialog(
+					gamePanel, 
+					"Your Points are:" + player.getGoals(), 
+					"Swing Tester",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE);
+			}
+
+		};
+		timer.schedule(task, 10000);
 		startGameLoop();
 	}
 
@@ -42,10 +63,11 @@ public class Game implements Runnable {
 		int xInit = 0;
 		int yInit = GAME_HEIGHT - TILES_SIZE;
 
-		globeManager = new GlobeManager();
 		player = new Player(xInit, yInit, TILES_SIZE + 30, TILES_SIZE + 30);
+		globeManager = new GlobeManager();
 		missile = new Missile(player.getHitBox().x, player.getHitBox().y - 25);
 		missile.setGlobeManager(globeManager);
+		globeManager.setPlayer(player);
 	}
 
 	private void startGameLoop() {
@@ -62,6 +84,9 @@ public class Game implements Runnable {
 		globeManager.render(g);
 		player.render(g);
 		missile.render(g, (int) player.getHitBox().x, (int) (player.getHitBox().y - 25));
+
+		g.drawString("Time: " + time, TILES_SIZE * 18, TILES_SIZE);
+		g.drawString("Points: " + player.getGoals(), TILES_SIZE * 18, TILES_SIZE / 2);
 	}
 
 	@Override
@@ -93,7 +118,9 @@ public class Game implements Runnable {
 			}
 
 			if (deltaF >= 1) {
-				gamePanel.repaint();
+				if (isPlaying) {
+					gamePanel.repaint();
+				}
 				frames++;
 				deltaF--;
 			}
@@ -103,7 +130,7 @@ public class Game implements Runnable {
 				System.out.println("FPS: " + frames + " | UPS: " + updates);
 				frames = 0;
 				updates = 0;
-
+				time++;
 			}
 		}
 
@@ -117,7 +144,7 @@ public class Game implements Runnable {
 		return player;
 	}
 
-  public Missile getMissile() {
+	public Missile getMissile() {
 		return missile;
 	}
 

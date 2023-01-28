@@ -40,6 +40,19 @@ public class Constants {
 		}
 	}
 
+	public static int GetGlobePoints (int globe) {
+		switch (globe) {
+			case BLUE_GLOBE:
+				return 	5;
+			case GREEN_GLOBE:
+				return 	10;
+			case RED_GLOBE:
+				return 	15;
+			default: // 3 
+				return 	20;
+		}
+	}
+
 	public static String MISSILE_PATH = "res/missile.png";
 
 }

@@ -20,6 +20,7 @@ public class Player extends Entity {
 	private boolean moving = false;
 	private boolean left, right;
 	private float playerSpeed = 1f;
+	private int goals = 0;
 
 	public int[][] lvlData;
 	private float xDrawOffset = 26;
@@ -161,16 +162,12 @@ public class Player extends Entity {
 		return playerAction;
   }
 
-	// public BoxManager getBoxManager() {
-	// 	return boxManager;
-	// }
+	public void setGoals(int goals) {
+		this.goals += goals;
+	}
 
-	// public int getPlayerAction() {
-	// 	return playerAction;
-	// }
-
-  // public void setBushManager(BushManager bushManager) {
-	// 	this.bushManger = bushManager;
-  // }
+	public int getGoals() {
+		return goals;
+	}
 }
 
