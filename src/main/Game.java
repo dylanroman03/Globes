@@ -2,13 +2,10 @@ package main;
 
 import java.awt.Graphics;
 
+import entities.Missile;
 import entities.Player;
 import managers.GlobeManager;
 
-// import entities.Player;
-// import levels.BoxManager;
-// import levels.BushManager;
-// import levels.LevelManager;
 
 public class Game implements Runnable {
 	private GameWindow gameWindow;
@@ -19,9 +16,8 @@ public class Game implements Runnable {
 	private boolean isGaming = true;
 
 	private Player player;
-	// private LevelManager levelManager;
+	private Missile missile;
   private GlobeManager globeManager;
-  // private BushManager bushManager;
 
 	public final static int TILES_DEFAULT_SIZE = 16;
 	public final static float SCALE = 3f;
@@ -48,6 +44,7 @@ public class Game implements Runnable {
 
 		globeManager = new GlobeManager();
 		player = new Player(xInit, yInit, TILES_SIZE + 30, TILES_SIZE + 30);
+		missile = new Missile(player.getHitBox().x, player.getHitBox().y - 25);
 	}
 
 	private void startGameLoop() {
@@ -60,8 +57,9 @@ public class Game implements Runnable {
 	}
 
 	public void render(Graphics g) {
-		player.render(g);
 		globeManager.render(g);
+		player.render(g);
+		missile.render(g, (int) player.getHitBox().x, (int) (player.getHitBox().y - 25));
 	}
 
 	@Override

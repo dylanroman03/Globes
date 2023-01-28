@@ -40,4 +40,6 @@ public class Constants {
 		}
 	}
 
+	public static String MISSILE_PATH = "res/missile.png";
+
 }
